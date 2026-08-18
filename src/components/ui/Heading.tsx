@@ -11,11 +11,11 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const sizeClasses: Record<string, string> = {
-  display: "font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-ink",
-  h1: "font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-ink",
-  h2: "font-serif text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight text-ink",
-  h3: "font-serif text-xl sm:text-2xl font-normal text-ink",
-  h4: "font-serif text-lg sm:text-xl font-normal text-ink",
+  display: "font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight text-ink leading-[1.15] break-words",
+  h1: "font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-ink leading-tight break-words",
+  h2: "font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-ink leading-tight break-words",
+  h3: "font-serif text-lg sm:text-xl md:text-2xl font-normal text-ink",
+  h4: "font-serif text-base sm:text-lg font-normal text-ink",
 };
 
 export function Heading({

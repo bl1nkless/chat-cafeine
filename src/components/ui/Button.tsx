@@ -22,7 +22,7 @@ export interface ButtonProps {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-ink text-cream hover:bg-ink/90 active:bg-black shadow-xs transition-colors duration-200",
+    "bg-ink text-cream hover:bg-black/90 active:bg-black shadow-xs transition-colors duration-200",
   secondary:
     "bg-warm text-ink hover:bg-warm-dark active:bg-sand transition-colors duration-200",
   outline:
@@ -30,7 +30,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost:
     "text-ink hover:bg-warm/40 active:bg-warm/60 transition-colors duration-200",
   whatsapp:
-    "bg-[#25D366] text-white hover:bg-[#1EBE5D] active:bg-[#18A24F] shadow-xs transition-colors duration-200 font-medium",
+    "bg-ink text-cream hover:bg-black active:bg-black/90 border border-ink shadow-xs transition-colors duration-200 font-medium",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

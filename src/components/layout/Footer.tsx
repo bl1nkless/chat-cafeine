@@ -35,11 +35,11 @@ export function Footer() {
               <CatMascot pose="sit" size="sm" className="text-ink" />
               <span className="font-serif text-2xl text-ink">Chat Caféiné</span>
             </div>
-            <p className="font-serif italic text-sm text-ink-muted leading-relaxed">
+            <p className="font-serif italic text-sm text-ink-muted leading-relaxed font-light">
               « Fait maison avec amour, comme pour ma propre famille. »
             </p>
-            <p className="text-xs text-ink-muted leading-relaxed font-sans">
-              Pâtisserie artisanale et café de spécialité. Ingrédients 100% naturels, pur beurre 82%, sans compromis.
+            <p className="text-xs text-ink-muted leading-relaxed font-sans font-light">
+              Pâtisserie artisanale et café de spécialité à Chartres. Ingrédients 100% naturels, pur beurre français 82%, sans compromis.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export function Footer() {
             <h3 className="text-xs font-sans font-semibold uppercase tracking-wider text-ink">
               Navigation
             </h3>
-            <ul className="space-y-2 text-sm font-sans text-ink-muted">
+            <ul className="space-y-2 text-xs sm:text-sm font-sans text-ink-muted font-light">
               {siteConfig.navigation.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -68,7 +68,7 @@ export function Footer() {
               <Clock className="w-3.5 h-3.5 text-brown" />
               <span>Horaires d&apos;ouverture</span>
             </h3>
-            <ul className="space-y-2 text-xs font-sans text-ink-muted">
+            <ul className="space-y-2 text-xs font-sans text-ink-muted font-light">
               {siteConfig.hours.map((h, i) => (
                 <li key={i} className="flex justify-between border-b border-sand/20 pb-1">
                   <span>{h.days}</span>
@@ -85,11 +85,11 @@ export function Footer() {
               <span>Retrait & Contact</span>
             </h3>
 
-            <div className="text-xs font-sans text-ink-muted space-y-1.5">
+            <div className="text-xs font-sans text-ink-muted space-y-1.5 font-light">
               <p className="font-medium text-ink">{siteConfig.address.street}</p>
               <p>{siteConfig.address.postalCode} {siteConfig.address.city}, France</p>
-              <div className="p-2.5 rounded-lg bg-sand/20 border border-sand/40 text-[11px] text-ink font-medium mt-2">
-                ⚠️ Retrait au café uniquement · Pas de livraison
+              <div className="p-2.5 rounded-xl bg-warm/60 border border-sand/50 text-[11px] text-ink font-medium mt-2">
+                Retrait au café à Chartres uniquement · Pas de livraison
               </div>
             </div>
 
@@ -98,9 +98,9 @@ export function Footer() {
                 href={siteConfig.contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#25D366] text-white text-xs font-sans font-medium hover:bg-[#1EBE5D] transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ink text-cream text-xs font-sans font-medium hover:bg-black transition-colors"
               >
-                <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                <MessageCircle className="w-3.5 h-3.5 opacity-90 stroke-[2.2]" />
                 <span>WhatsApp</span>
               </Link>
 
@@ -118,9 +118,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar with Sleeping Cat */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted font-sans">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted font-sans font-light">
           <div className="flex items-center gap-3">
-            <CatMascot pose="sleep" size="sm" className="text-ink/70" />
+            <CatMascot pose="sleep" size="sm" className="text-ink/80" />
             <span>
               © {new Date().getFullYear()} Chat Caféiné · Chartres, France. Tous droits réservés.
             </span>

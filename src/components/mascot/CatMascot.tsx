@@ -1,12 +1,12 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-export type CatPose = "sit" | "walk" | "peek" | "sleep" | "idle";
+export type CatPose = "sit" | "walk" | "peek" | "sleep" | "idle" | "stretch";
 
 interface CatMascotProps extends React.SVGAttributes<SVGSVGElement> {
   pose?: CatPose;
   className?: string;
-  size?: "sm" | "default" | "lg";
+  size?: "sm" | "default" | "lg" | "xl";
 }
 
 export function CatMascot({
@@ -16,81 +16,89 @@ export function CatMascot({
   ...props
 }: CatMascotProps) {
   const sizeClasses = {
-    sm: "w-8 h-8",
-    default: "w-12 h-12",
-    lg: "w-20 h-20",
+    sm: "w-6 h-6 sm:w-7 sm:h-7",
+    default: "w-10 h-10 sm:w-12 sm:h-12",
+    lg: "w-16 h-16 sm:w-20 sm:h-20",
+    xl: "w-24 h-24 sm:w-28 sm:h-28",
   };
 
   if (pose === "sit") {
+    // Sleek sitting upright cat silhouette with curled tail & alert pointed ears
     return (
       <svg
         viewBox="0 0 100 100"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 transition-transform", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
         {...props}
       >
-        {/* Cat Sitting Silhouette */}
-        <path d="M52 28 C50 20, 42 16, 36 22 C32 20, 28 26, 30 34 C25 39, 24 50, 26 62 C27 70, 31 82, 38 88 C45 92, 58 92, 64 86 C67 82, 68 76, 68 70 C70 66, 75 66, 80 72 C83 75, 87 77, 90 73 C92 70, 90 64, 84 60 C78 56, 72 58, 70 64 C68 56, 66 46, 60 38 C58 35, 55 30, 52 28 Z M34 23 L40 30 L32 32 Z M48 23 L51 32 L44 31 Z" />
+        <path d="M 46 16 C 45 12 40 8 36 12 C 34 14 30 18 31 23 C 27 27 25 34 26 42 C 26 48 27 54 28 62 C 29 70 33 80 40 86 C 47 90 56 90 62 86 C 66 83 68 78 67 72 C 67 66 69 62 74 66 C 78 69 82 72 86 68 C 88 65 86 60 82 56 C 77 52 72 54 70 60 C 69 54 67 44 62 36 C 58 30 53 24 49 20 C 49 17 48 15 46 16 Z M 34 15 L 39 22 L 32 23 Z M 46 15 L 48 23 L 42 22 Z" />
+        {/* Subtle eye gleam */}
+        <circle cx="36" cy="27" r="1.5" fill="#C9B79C" opacity="0.9" />
+        <circle cx="43" cy="27" r="1.5" fill="#C9B79C" opacity="0.9" />
       </svg>
     );
   }
 
   if (pose === "walk") {
+    // Graceful walking black cat silhouette with arched high tail and elegant stride
     return (
       <svg
-        viewBox="0 0 120 70"
+        viewBox="0 0 140 80"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 transition-transform", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
         {...props}
       >
-        {/* Cat Walking Silhouette */}
-        <path d="M102 24 C100 18, 93 14, 88 18 C85 16, 81 20, 83 26 C75 28, 64 30, 52 31 C40 32, 28 36, 22 42 C16 48, 12 36, 8 26 C6 20, 4 18, 2 20 C0 22, 2 30, 6 42 C10 54, 18 64, 28 64 C32 64, 34 58, 34 50 C38 56, 44 64, 48 64 C52 64, 54 56, 54 48 C60 52, 68 64, 74 64 C78 64, 80 56, 80 46 C84 50, 90 60, 96 60 C100 60, 102 52, 98 42 C104 38, 106 32, 102 24 Z" />
+        <path d="M 112 20 C 110 14 104 10 99 14 C 96 12 91 16 93 22 C 85 24 74 27 60 28 C 48 29 35 33 28 38 C 21 43 16 32 12 21 C 10 14 7 11 4 13 C 2 15 4 23 8 36 C 12 50 19 62 30 62 C 34 62 36 55 36 46 C 41 53 47 62 52 62 C 56 62 57 53 57 44 C 64 49 72 62 78 62 C 82 62 84 53 84 43 C 89 48 95 58 101 58 C 105 58 107 49 104 38 C 111 34 114 28 112 20 Z M 96 14 L 101 21 L 94 22 Z M 106 14 L 109 22 L 102 21 Z" />
+        {/* Subtle eye gleam */}
+        <circle cx="103" cy="25" r="1.5" fill="#C9B79C" opacity="0.9" />
       </svg>
     );
   }
 
   if (pose === "peek") {
+    // Peeking cat over border or corner
     return (
       <svg
         viewBox="0 0 80 60"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 transition-transform", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
         {...props}
       >
-        {/* Cat Peeking Silhouette */}
-        <path d="M16 60 C14 44, 20 28, 32 20 C28 12, 34 6, 40 12 C46 14, 52 14, 58 12 C64 6, 70 12, 66 20 C76 28, 80 44, 78 60 Z M33 11 L39 21 L30 20 Z M65 11 L67 20 L58 21 Z" />
+        <path d="M 18 60 C 16 46 22 30 33 22 C 29 14 35 8 41 14 C 46 16 52 16 57 14 C 63 8 69 14 65 22 C 75 30 79 46 77 60 Z M 34 13 L 40 23 L 31 22 Z M 64 13 L 66 22 L 57 23 Z" />
+        <circle cx="38" cy="29" r="2" fill="#C9B79C" opacity="0.9" />
+        <circle cx="56" cy="29" r="2" fill="#C9B79C" opacity="0.9" />
       </svg>
     );
   }
 
   if (pose === "sleep") {
+    // Curled up sleeping cat
     return (
       <svg
         viewBox="0 0 100 50"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 transition-transform", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
         {...props}
       >
-        {/* Cat Sleeping / Curled Silhouette */}
-        <path d="M15 35 C15 20, 32 10, 52 10 C72 10, 88 20, 88 35 C88 45, 75 50, 52 50 C28 50, 15 45, 15 35 Z M70 20 L76 13 L80 22 Z M58 16 L64 10 L68 18 Z" />
+        <path d="M 18 35 C 18 20 34 12 52 12 C 70 12 86 20 86 35 C 86 45 74 48 52 48 C 30 48 18 45 18 35 Z M 68 22 L 74 15 L 77 24 Z M 56 18 L 62 12 L 66 20 Z" />
       </svg>
     );
   }
 
-  // default: idle pose
+  // Default: alert standing/sitting pose
   return (
     <svg
       viewBox="0 0 100 100"
       fill="currentColor"
       aria-hidden="true"
-      className={cn("text-ink shrink-0 transition-transform", sizeClasses[size], className)}
+      className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
       {...props}
     >
-      <path d="M48 24 C46 16, 38 12, 32 18 C28 16, 24 22, 26 30 C20 36, 20 48, 22 60 C24 70, 28 84, 38 88 C46 92, 58 92, 64 86 C68 82, 70 74, 70 66 C74 72, 80 76, 86 72 C90 68, 88 60, 82 56 C76 52, 72 56, 70 62 C68 52, 64 42, 58 34 C55 30, 52 26, 48 24 Z" />
+      <path d="M 46 16 C 45 12 40 8 36 12 C 34 14 30 18 31 23 C 27 27 25 34 26 42 C 26 48 27 54 28 62 C 29 70 33 80 40 86 C 47 90 56 90 62 86 C 66 83 68 78 67 72 C 67 66 69 62 74 66 C 78 69 82 72 86 68 C 88 65 86 60 82 56 C 77 52 72 54 70 60 C 69 54 67 44 62 36 C 58 30 53 24 49 20 C 49 17 48 15 46 16 Z" />
     </svg>
   );
 }

@@ -16,13 +16,13 @@ export function PickupBadge({
     return (
       <div
         className={cn(
-          "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-warm/80 border border-sand/50 text-xs text-ink font-sans tracking-wide",
+          "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-warm/80 border border-sand/50 text-[11px] sm:text-xs text-ink font-sans tracking-wide max-w-full truncate",
           className
         )}
         {...props}
       >
         <MapPin className="w-3.5 h-3.5 text-brown shrink-0" />
-        <span>Retrait à Chartres · Pas de livraison</span>
+        <span className="truncate">Retrait à Chartres · Pas de livraison</span>
       </div>
     );
   }
@@ -55,7 +55,7 @@ export function PickupBadge({
       )}
       {...props}
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-brown inline-block" />
+      <span className="w-1.5 h-1.5 rounded-full bg-brown inline-block shrink-0" />
       <span>Sur commande · Retrait au café à Chartres</span>
     </div>
   );

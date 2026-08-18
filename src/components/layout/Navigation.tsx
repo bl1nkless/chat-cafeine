@@ -8,13 +8,14 @@ import { cn } from "@/lib/utils";
 
 interface NavigationProps {
   className?: string;
+  isScrolled?: boolean;
 }
 
-export function Navigation({ className }: NavigationProps) {
+export function Navigation({ className, isScrolled = false }: NavigationProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={cn("hidden md:flex items-center gap-6 lg:gap-8", className)}>
+    <nav className={cn("hidden md:flex items-center gap-5 lg:gap-8", className)}>
       {siteConfig.navigation.map((item) => {
         const isActive =
           pathname === item.href ||
@@ -25,15 +26,24 @@ export function Navigation({ className }: NavigationProps) {
             key={item.href}
             href={item.href}
             className={cn(
-              "text-xs lg:text-sm font-sans tracking-wide uppercase transition-colors duration-200 py-1 relative",
-              isActive
-                ? "text-ink font-semibold"
-                : "text-ink-muted hover:text-ink"
+              "text-[11px] lg:text-xs font-sans tracking-widest uppercase transition-all duration-200 py-1 relative select-none",
+              isScrolled
+                ? isActive
+                  ? "text-ink font-semibold"
+                  : "text-ink-muted hover:text-ink font-normal"
+                : isActive
+                ? "text-white font-semibold"
+                : "text-cream/80 hover:text-white font-light"
             )}
           >
             {item.label}
             {isActive && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-ink rounded-full" />
+              <span
+                className={cn(
+                  "absolute -bottom-1 left-0 right-0 h-0.5 rounded-full",
+                  isScrolled ? "bg-ink" : "bg-cream"
+                )}
+              />
             )}
           </Link>
         );

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Lora, Montserrat } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "@/styles/globals.css";
@@ -7,12 +7,6 @@ import "@/styles/globals.css";
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
-  display: "swap",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora",
   display: "swap",
 });
 
@@ -61,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${playfair.variable} ${lora.variable} ${montserrat.variable}`}
+      className={`${playfair.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-ink antialiased selection:bg-brown selection:text-cream-light">
         <Header />

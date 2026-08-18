@@ -10,12 +10,9 @@
   --color-sand: #c9b79c;
   --color-brown: #8b6e4f;
   --color-brown-dark: #6f553c;
-  --color-whatsapp: #25d366;
-  --color-whatsapp-hover: #1ebe5d;
 
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-display: var(--font-playfair), Georgia, serif;
-  --font-story: var(--font-lora), Georgia, serif;
   --font-sans: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 

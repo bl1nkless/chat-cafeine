@@ -101,9 +101,9 @@ export default function ContactPage() {
                   href={siteConfig.contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-[#25D366]/10 border border-[#25D366]/30 text-ink hover:bg-[#25D366]/20 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-warm/50 border border-sand/50 text-ink hover:bg-warm transition-colors"
                 >
-                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                  <MessageCircle className="w-5 h-5 text-ink" />
                   <div>
                     <span className="text-xs font-semibold block text-ink">WhatsApp Direct</span>
                     <span className="text-[11px] text-ink-muted">Réponse rapide de la cheffe</span>

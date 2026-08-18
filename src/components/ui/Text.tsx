@@ -11,7 +11,7 @@ interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 const variantClasses: Record<string, string> = {
   body: "text-base text-ink-muted leading-relaxed font-sans",
   lead: "text-lg sm:text-xl text-ink leading-relaxed font-sans",
-  story: "font-story text-base sm:text-lg italic text-ink-muted leading-relaxed",
+  story: "font-serif italic text-base sm:text-lg text-ink-muted leading-relaxed",
   small: "text-xs sm:text-sm text-ink-muted leading-normal font-sans",
   muted: "text-sm text-ink-muted/80 font-sans",
 };

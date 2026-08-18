@@ -29,10 +29,10 @@ export function WhatsAppButton({
       variant="whatsapp"
       size={size}
       href={url}
-      className={cn("font-medium tracking-normal", className)}
+      className={cn("bg-ink text-cream hover:bg-black font-medium tracking-normal", className)}
       {...props}
     >
-      <MessageCircle className="w-4 h-4 shrink-0 fill-current" />
+      <MessageCircle className="w-3.5 h-3.5 shrink-0 opacity-90 stroke-[2.2]" />
       <span>{children || label}</span>
     </Button>
   );
