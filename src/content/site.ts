@@ -5,6 +5,7 @@ export interface NavItem {
 
 export const siteConfig = {
   name: "Chat Caféiné",
+  url: "https://chatcafeine.fr",
   tagline: "Pâtisserie artisanale & café de spécialité à Chartres",
   shortDescription:
     "Des gâteaux faits maison pour les moments qui comptent. Retrait au café à Chartres uniquement.",

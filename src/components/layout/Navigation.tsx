@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 
 interface NavigationProps {
   className?: string;
-  isScrolled?: boolean;
+  isOverlay?: boolean;
 }
 
-export function Navigation({ className, isScrolled = false }: NavigationProps) {
+export function Navigation({ className, isOverlay = false }: NavigationProps) {
   const pathname = usePathname();
 
   return (
@@ -26,22 +26,22 @@ export function Navigation({ className, isScrolled = false }: NavigationProps) {
             key={item.href}
             href={item.href}
             className={cn(
-              "text-[11px] lg:text-xs font-sans tracking-widest uppercase transition-all duration-200 py-1 relative select-none",
-              isScrolled
+              "text-[11px] lg:text-xs font-sans font-medium tracking-widest uppercase py-1 relative select-none transition-colors duration-200",
+              isOverlay
                 ? isActive
-                  ? "text-ink font-semibold"
-                  : "text-ink-muted hover:text-ink font-normal"
+                  ? "text-white"
+                  : "text-cream/80 hover:text-white"
                 : isActive
-                ? "text-white font-semibold"
-                : "text-cream/80 hover:text-white font-light"
+                ? "text-ink"
+                : "text-ink-muted hover:text-ink"
             )}
           >
             {item.label}
             {isActive && (
               <span
                 className={cn(
-                  "absolute -bottom-1 left-0 right-0 h-0.5 rounded-full",
-                  isScrolled ? "bg-ink" : "bg-cream"
+                  "absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transition-colors duration-200",
+                  isOverlay ? "bg-white" : "bg-ink"
                 )}
               />
             )}

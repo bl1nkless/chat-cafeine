@@ -18,10 +18,11 @@ export function WhatsAppButton({
   children,
   ...props
 }: WhatsAppButtonProps) {
+  const cleanPhone = (siteConfig.contact.whatsappPhone || "33600000000").replace(/\D/g, "");
   const url =
     href ||
     (message
-      ? `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(message)}`
+      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`
       : siteConfig.contact.whatsappUrl);
 
   return (

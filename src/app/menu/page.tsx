@@ -68,9 +68,9 @@ export default function MenuPage() {
           className="object-cover object-center"
         />
         {/* Soft atmospheric gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/40" />
 
-        <div className="relative z-10 text-center px-4 max-w-2xl mx-auto space-y-3">
+        <div className="relative z-10 text-center px-4 max-w-2xl mx-auto space-y-3 pb-6">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal uppercase tracking-widest leading-tight">
             Menu du Café
           </h1>
@@ -83,8 +83,8 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — AUJOURD'HUI AU CAFÉ (Photography Dominant) */}
-      <section className="py-14 sm:py-20 border-b border-sand/30">
+      {/* SECTION 2 — AUJOURD'HUI AU CAFÉ (Intentional 28px Overlap Transition) */}
+      <section className="-mt-7 relative z-20 rounded-t-[32px] sm:rounded-t-[40px] bg-[#F6F3EE] pt-12 sm:pt-16 pb-14 sm:pb-20 border-b border-sand/30">
         <Container size="wide">
           <div className="space-y-10 sm:space-y-12">
             <div className="text-center space-y-2">

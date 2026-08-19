@@ -17,6 +17,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chatcafeine.fr"),
   title: {
     template: "%s | Chat Caféiné — Pâtisserie à Chartres",
     default: "Chat Caféiné | Pâtisserie artisanale & Café à Chartres",

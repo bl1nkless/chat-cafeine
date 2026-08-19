@@ -29,7 +29,7 @@ export function CatMascot({
         viewBox="0 0 100 100"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle transition-transform duration-300 hover:scale-110 hover:-rotate-3 cursor-pointer", sizeClasses[size], className)}
         {...props}
       >
         <path d="M 46 16 C 45 12 40 8 36 12 C 34 14 30 18 31 23 C 27 27 25 34 26 42 C 26 48 27 54 28 62 C 29 70 33 80 40 86 C 47 90 56 90 62 86 C 66 83 68 78 67 72 C 67 66 69 62 74 66 C 78 69 82 72 86 68 C 88 65 86 60 82 56 C 77 52 72 54 70 60 C 69 54 67 44 62 36 C 58 30 53 24 49 20 C 49 17 48 15 46 16 Z M 34 15 L 39 22 L 32 23 Z M 46 15 L 48 23 L 42 22 Z" />
@@ -47,7 +47,7 @@ export function CatMascot({
         viewBox="0 0 140 80"
         fill="currentColor"
         aria-hidden="true"
-        className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
+        className={cn("text-ink shrink-0 inline-block align-middle transition-transform duration-500 hover:translate-x-4 cursor-pointer", sizeClasses[size], className)}
         {...props}
       >
         <path d="M 112 20 C 110 14 104 10 99 14 C 96 12 91 16 93 22 C 85 24 74 27 60 28 C 48 29 35 33 28 38 C 21 43 16 32 12 21 C 10 14 7 11 4 13 C 2 15 4 23 8 36 C 12 50 19 62 30 62 C 34 62 36 55 36 46 C 41 53 47 62 52 62 C 56 62 57 53 57 44 C 64 49 72 62 78 62 C 82 62 84 53 84 43 C 89 48 95 58 101 58 C 105 58 107 49 104 38 C 111 34 114 28 112 20 Z M 96 14 L 101 21 L 94 22 Z M 106 14 L 109 22 L 102 21 Z" />
@@ -95,7 +95,7 @@ export function CatMascot({
       viewBox="0 0 100 100"
       fill="currentColor"
       aria-hidden="true"
-      className={cn("text-ink shrink-0 inline-block align-middle", sizeClasses[size], className)}
+      className={cn("text-ink shrink-0 inline-block align-middle transition-transform duration-300 hover:scale-110 cursor-pointer", sizeClasses[size], className)}
       {...props}
     >
       <path d="M 46 16 C 45 12 40 8 36 12 C 34 14 30 18 31 23 C 27 27 25 34 26 42 C 26 48 27 54 28 62 C 29 70 33 80 40 86 C 47 90 56 90 62 86 C 66 83 68 78 67 72 C 67 66 69 62 74 66 C 78 69 82 72 86 68 C 88 65 86 60 82 56 C 77 52 72 54 70 60 C 69 54 67 44 62 36 C 58 30 53 24 49 20 C 49 17 48 15 46 16 Z" />

@@ -10,10 +10,10 @@ import { CatMascot } from "@/components/mascot/CatMascot";
 import { cn } from "@/lib/utils";
 
 interface MobileMenuProps {
-  isScrolled?: boolean;
+  isOverlay?: boolean;
 }
 
-export function MobileMenu({ isScrolled = false }: MobileMenuProps) {
+export function MobileMenu({ isOverlay = false }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -49,7 +49,7 @@ export function MobileMenu({ isScrolled = false }: MobileMenuProps) {
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className="p-2 -mr-2 text-ink hover:text-brown focus:outline-none cursor-pointer flex items-center justify-center transition-colors"
+          className="p-2 -mr-2 text-ink hover:text-brown focus:outline-none cursor-pointer flex items-center justify-center transition-colors duration-200"
           aria-label="Fermer le menu"
         >
           <X className="w-6 h-6" />
@@ -69,7 +69,7 @@ export function MobileMenu({ isScrolled = false }: MobileMenuProps) {
               href={item.href}
               onClick={() => setIsOpen(false)}
               className={cn(
-                "text-lg font-serif py-3.5 border-b border-sand/20 transition-colors flex items-center justify-between",
+                "text-lg font-serif py-3.5 border-b border-sand/20 transition-colors duration-200 flex items-center justify-between",
                 isActive
                   ? "text-ink font-semibold pl-2 border-l-2 border-l-brown"
                   : "text-ink-muted hover:text-ink font-normal"
@@ -87,7 +87,7 @@ export function MobileMenu({ isScrolled = false }: MobileMenuProps) {
           href={siteConfig.contact.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-full bg-ink text-cream font-sans text-xs font-medium uppercase tracking-wider hover:bg-black transition-colors shadow-xs"
+          className="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-full bg-ink text-cream font-sans text-xs font-medium uppercase tracking-wider hover:bg-black transition-colors duration-200 shadow-xs"
         >
           <MessageCircle className="w-4 h-4 opacity-90 stroke-[2.2]" />
           <span>Commander sur WhatsApp</span>
@@ -106,8 +106,8 @@ export function MobileMenu({ isScrolled = false }: MobileMenuProps) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "p-2 -mr-2 focus:outline-none cursor-pointer flex items-center justify-center transition-colors",
-          isScrolled ? "text-ink hover:text-brown" : "text-white hover:text-cream"
+          "p-2 -mr-2 focus:outline-none cursor-pointer flex items-center justify-center transition-colors duration-200",
+          isOverlay ? "text-white hover:text-cream" : "text-ink hover:text-brown"
         )}
         aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
         aria-expanded={isOpen}
