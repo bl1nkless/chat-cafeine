@@ -115,114 +115,122 @@ export default function ProductDetailPage() {
   }, []);
 
   return (
-    <div className="py-6 sm:py-10 bg-[#F6F3EE] min-h-screen font-sans text-ink">
-      {/* Target container ~1100-1180px */}
-      <div className="mx-auto w-full max-w-[1140px] px-4 md:px-8 space-y-16 sm:space-y-24">
+    <div className="bg-[#F6F3EE] min-h-screen pt-24 sm:pt-32 pb-24 selection:bg-brown selection:text-cream-light font-sans relative">
+      <div className="w-full max-w-[1160px] mx-auto px-5 sm:px-6 md:px-8">
         
-        {/* SECTION 1 — PRODUCT HERO */}
-        <section className="flex flex-col lg:flex-row gap-10 lg:gap-14 xl:gap-16 items-start">
-          {/* LEFT: Image (56-60%) */}
-          <div className="w-full lg:w-[58%] shrink-0 relative aspect-[4/5] sm:aspect-[1/1] lg:aspect-[4/5] rounded-[16px] overflow-hidden bg-warm/30 border border-sand/40 shadow-sm">
+        {/* HERO SECTION */}
+        <section className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.65fr)_minmax(320px,0.85fr)] gap-8 lg:gap-[56px] items-start">
+          
+          {/* MOBILE BACK LINK */}
+          <div className="block lg:hidden mb-4">
+            <Link
+              href="/gateaux"
+              className="inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-widest text-ink-muted hover:text-ink transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Retour au catalogue</span>
+            </Link>
+          </div>
+
+          {/* LEFT: IMAGE */}
+          <div className="w-full h-[400px] lg:h-[560px] relative rounded-[16px] overflow-hidden">
             <Image
-              src={product.image}
+              src={product.image || "/images/home/product-medovik.jpg"}
               alt={product.name}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 60vw"
+              sizes="(max-width: 1024px) 100vw, 65vw"
               className="object-cover"
             />
           </div>
 
-          {/* RIGHT: Product Information (40-44%) */}
-          <div className="w-full lg:w-[42%] flex flex-col pt-2 sm:pt-6">
-            <Link
-              href="/gateaux"
-              className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] uppercase tracking-widest text-ink-muted hover:text-ink transition-colors group mb-6 sm:mb-8"
-            >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span>Retour au catalogue</span>
-            </Link>
+          {/* RIGHT: INFO COLUMN */}
+          <div className="flex flex-col">
+            
+            {/* DESKTOP BACK LINK */}
+            <div className="hidden lg:block">
+              <Link
+                href="/gateaux"
+                className="inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-widest text-ink-muted hover:text-ink transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Retour au catalogue</span>
+              </Link>
+            </div>
 
-            <h1 className="font-serif text-[32px] leading-[1.1] sm:text-4xl md:text-5xl text-ink font-normal uppercase tracking-wide mb-4 sm:mb-6">
+            <h1 className="font-serif text-[36px] sm:text-[40px] lg:text-[48px] leading-[1.05] text-ink font-normal uppercase tracking-wide mt-4 lg:mt-7">
               {product.name}
             </h1>
 
-            <p className="font-serif text-base sm:text-lg text-ink-muted leading-relaxed mb-6 sm:mb-8">
+            <p className="max-w-[360px] font-sans text-[15px] sm:text-[16px] text-ink-muted leading-[1.6] line-clamp-3 mt-4 lg:mt-6">
               {product.subtitle}
             </p>
 
-            <div className="space-y-1 mb-6 sm:mb-8">
-              <p className="font-serif text-xl sm:text-2xl text-ink font-medium">
-                À partir de {product.priceFrom} €
-              </p>
-              <p className="font-sans text-[11px] sm:text-[13px] text-ink-muted uppercase tracking-wider">
-                Dès {product.portionOptions[0]?.value || 6} personnes • Préparation 48h
-              </p>
-            </div>
+            <p className="font-serif text-[30px] sm:text-[34px] text-ink font-medium mt-6 lg:mt-8">
+              À partir de {product.priceFrom} €
+            </p>
 
-            <div className="mb-6" ref={primaryCtaRef}>
-              <Button
-                variant="primary"
+            <p className="font-sans text-[13px] sm:text-[14px] text-ink-muted uppercase tracking-wider mt-1">
+              Dès {product.portionOptions[0]?.value || 6} personnes · préparation 48h
+            </p>
+
+            <div ref={primaryCtaRef} className="mt-6 lg:mt-7 w-full">
+              <button
                 onClick={() => setIsDrawerOpen(true)}
-                className="w-full bg-ink text-cream hover:bg-black font-medium text-[15px] py-4 rounded-none uppercase tracking-widest transition-colors shadow-xs"
+                className="w-full h-[54px] bg-[#1A1A1A] text-[#F6F3EE] hover:bg-black font-sans text-[13px] font-medium uppercase tracking-wider transition-colors flex items-center justify-center cursor-pointer"
               >
                 Personnaliser & commander
-              </Button>
+              </button>
             </div>
 
-            <div className="text-[13px] text-ink-muted leading-relaxed">
-              <p>Retrait au café à Chartres</p>
-              <p>Pas de livraison</p>
+            <div className="mt-[14px] text-[12px] sm:text-[13px] font-sans text-ink-muted leading-snug">
+              Retrait au café à Chartres<br />
+              Pas de livraison
             </div>
           </div>
         </section>
 
-        {/* SECTION 2 — COMPOSITION */}
-        <section className="space-y-10 sm:space-y-14 overflow-hidden">
-          <h2 className="text-center font-serif text-2xl sm:text-3xl uppercase tracking-widest text-ink">
+        {/* COMPOSITION SECTION */}
+        <section className="mt-[80px]">
+          <h2 className="font-serif text-[34px] sm:text-[38px] uppercase tracking-widest text-ink mb-10 text-left">
             Ce qu&apos;il y a à l&apos;intérieur
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center max-w-4xl mx-auto">
-            {/* LEFT: Animated exploded cake illustration */}
-            <div className="relative aspect-square w-full max-w-[320px] mx-auto rounded-none group perspective-[1000px]">
-              {/* If we have layered images in the future, we could map over them here. 
-                  For now we apply a smooth floating/scale hover effect to the static image to simulate 3D life. */}
-              <div className="w-full h-full relative transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2">
-                <Image
-                  src={product.explodedImage || "/images/products/medovik-exploded.jpg"}
-                  alt={`Composition de ${product.name}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain"
-                />
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 lg:gap-[64px] items-start">
+            <div className="relative w-full aspect-square lg:aspect-[4/3]">
+              <Image
+                src={product.explodedImage || "/images/products/medovik-exploded.jpg"}
+                alt={`Composition de ${product.name}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-contain"
+              />
             </div>
 
-            {/* RIGHT: ingredient/component descriptions with staggered fade-in */}
-            <div className="space-y-0 relative before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[1px] before:bg-sand/40">
+            <div className="flex flex-col space-y-6">
               {(product.ingredientCards || []).map((card, idx) => (
-                <div 
-                  key={card.title} 
-                  className="py-5 pl-6 relative before:absolute before:left-[-3px] before:top-8 before:w-1.5 before:h-1.5 before:rounded-full before:bg-brown/60 last:border-0 hover:before:bg-brown transition-all duration-300 group/item hover:translate-x-1"
-                  style={{ animationDelay: `${idx * 150}ms` }}
-                >
-                  <h3 className="font-serif text-[15px] uppercase tracking-widest text-ink mb-2 group-hover/item:text-brown transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="font-sans text-[14px] text-ink-muted font-light leading-relaxed">
-                    {card.items.join(" • ")}
-                  </p>
-                </div>
+                <React.Fragment key={card.title}>
+                  <div>
+                    <h3 className="font-sans text-[12px] uppercase tracking-widest text-ink mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="font-serif text-[15px] sm:text-[17px] text-ink-muted leading-relaxed">
+                      {card.items.join(" • ")}
+                    </p>
+                  </div>
+                  {idx < (product.ingredientCards || []).length - 1 && (
+                    <hr className="border-t border-sand/40" />
+                  )}
+                </React.Fragment>
               ))}
               
               {/* Fallback */}
               {(!product.ingredientCards || product.ingredientCards.length === 0) && (
-                <div className="py-5 pl-6 relative before:absolute before:left-[-3px] before:top-8 before:w-1.5 before:h-1.5 before:rounded-full before:bg-brown/60">
-                  <h3 className="font-serif text-[15px] uppercase tracking-widest text-ink mb-2">
+                <div>
+                  <h3 className="font-sans text-[12px] uppercase tracking-widest text-ink mb-2">
                     Composition
                   </h3>
-                  <p className="font-sans text-[14px] text-ink-muted font-light leading-relaxed">
+                  <p className="font-serif text-[15px] sm:text-[17px] text-ink-muted leading-relaxed">
                     {product.explodedLayers?.map(l => l.label).join(" • ")}
                   </p>
                 </div>
@@ -231,91 +239,51 @@ export default function ProductDetailPage() {
           </div>
         </section>
 
-        {/* SECTION 3 — PRODUCT FACTS */}
-        <section className="py-8 border-y border-sand/40">
-          <div className="flex flex-wrap justify-center md:justify-between items-center gap-6 md:gap-4 max-w-4xl mx-auto text-center md:text-left">
-            <div className="flex flex-col items-center gap-2 w-[140px]">
-              <Users className="w-6 h-6 text-brown stroke-[1.5]" />
-              <span className="font-sans text-[13px] text-ink uppercase tracking-wider">Dès {product.portionOptions[0]?.value || 6} pers.</span>
+        {/* INGREDIENTS + ALLERGENS SECTION */}
+        <section className="mt-[72px] border-t border-sand/40 pt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-16">
+            <div>
+              <h3 className="font-sans text-[12px] uppercase tracking-widest text-ink mb-3">
+                Ingrédients
+              </h3>
+              <p className="font-serif text-[14px] sm:text-[15px] text-ink-muted leading-relaxed">
+                {product.fixedIngredients?.join(" • ") || "Farine de blé, beurre AOP, œufs frais, sucre, lait entier, vanille Bourbon."}
+              </p>
             </div>
-            <div className="flex flex-col items-center gap-2 w-[140px]">
-              <Clock className="w-6 h-6 text-brown stroke-[1.5]" />
-              <span className="font-sans text-[13px] text-ink uppercase tracking-wider">48h de préparation</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 w-[140px]">
-              <Leaf className="w-6 h-6 text-brown stroke-[1.5]" />
-              <span className="font-sans text-[13px] text-ink uppercase tracking-wider">Ingrédients naturels</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 w-[140px]">
-              <HeartHandshake className="w-6 h-6 text-brown stroke-[1.5]" />
-              <span className="font-sans text-[13px] text-ink uppercase tracking-wider">Fait main</span>
+            <div>
+              <h3 className="font-sans text-[12px] uppercase tracking-widest text-ink mb-3">
+                Allergènes
+              </h3>
+              <p className="font-serif text-[14px] sm:text-[15px] text-ink-muted leading-relaxed">
+                {product.allergens?.join(" • ") || "Gluten (blé) • Lait / Beurre • Œufs"}
+              </p>
             </div>
           </div>
         </section>
 
-        {/* SECTION 4 — INGREDIENTS / ALLERGENS */}
-        <section className="max-w-3xl mx-auto space-y-8 text-center sm:text-left flex flex-col sm:flex-row sm:space-y-0 sm:gap-12 lg:gap-24">
-          <div className="flex-1">
-            <h3 className="font-serif text-[15px] uppercase tracking-widest text-ink mb-3">
-              Ingrédients
-            </h3>
-            <p className="font-sans text-[14px] text-ink-muted font-light leading-relaxed">
-              {product.fixedIngredients?.join(" • ") || "Farine de blé, beurre AOP, œufs frais, sucre, lait entier, vanille Bourbon."}
-            </p>
-          </div>
-          <div className="flex-1">
-            <h3 className="font-serif text-[15px] uppercase tracking-widest text-ink mb-3">
-              Allergènes
-            </h3>
-            <p className="font-sans text-[14px] text-ink-muted font-light leading-relaxed">
-              {product.allergens?.join(" • ") || "Gluten (blé) • Lait / Beurre • Œufs"}
-            </p>
-          </div>
-        </section>
-
-        {/* SECTION 5 — DESCRIPTION */}
-        <section className="max-w-2xl mx-auto pb-10 text-center">
-          <p className="font-serif italic text-base sm:text-[17px] text-ink leading-relaxed">
+        {/* DESCRIPTION SECTION */}
+        <section className="mt-[72px] pb-10">
+          <p className="max-w-[680px] font-serif text-[16px] sm:text-[17px] text-ink leading-[1.6] line-clamp-4">
             {product.description || "Un équilibre parfait entre croustillant et douceur fondante, confectionné artisanalement avec soin pour accompagner vos moments précieux."}
           </p>
         </section>
 
       </div>
 
-      {/* VIEWPORT-FIXED STICKY ORDER DOCK */}
+      {/* FLOATING ORDER CTA */}
       {showStickyDock && !isDrawerOpen && (
-        <>
-          <div className={`fixed right-6 bottom-6 z-40 hidden sm:block transition-all duration-300 pointer-events-auto ${isFooterVisible ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
-            <div className="bg-[#F6F3EE] border border-sand/40 shadow-xl rounded-full pl-6 pr-2 py-1.5 flex items-center justify-between gap-6 h-[56px] min-w-[340px]">
-              <div className="font-serif text-[15px] text-ink whitespace-nowrap">
-                {product.name} · {isConfigured ? `${totalPrice} € estimé` : `dès ${product.priceFrom} €`}
-              </div>
-              <Button
-                variant="primary"
-                onClick={() => setIsDrawerOpen(true)}
-                className="bg-ink text-cream hover:bg-black text-[13px] font-medium px-5 py-2.5 rounded-full uppercase tracking-wider transition-colors shrink-0"
-              >
-                {isConfigured ? "Modifier" : "Commander"}
-              </Button>
-            </div>
-          </div>
-
-          <div className={`fixed inset-x-0 bottom-0 z-40 bg-[#F6F3EE]/95 backdrop-blur-md border-t border-sand/50 px-5 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-lg sm:hidden flex items-center justify-between transition-all duration-300 pointer-events-auto ${isFooterVisible ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
-            <div className="font-serif text-[16px] text-ink">
-              Dès {product.priceFrom} €
-            </div>
-            <Button
-              variant="primary"
-              onClick={() => setIsDrawerOpen(true)}
-              className="bg-ink text-cream hover:bg-black text-[13px] font-medium px-6 py-2.5 rounded-none uppercase tracking-wider"
-            >
-              Commander
-            </Button>
-          </div>
-        </>
+        <div className={`fixed right-4 left-4 sm:left-auto sm:right-6 bottom-6 z-40 transition-all duration-300 pointer-events-auto ${isFooterVisible ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+          <button
+            onClick={() => setIsDrawerOpen(true)}
+            className="w-full sm:w-[340px] h-[56px] rounded-full bg-[#1A1A1A] text-[#F6F3EE] hover:bg-black font-sans text-[12px] sm:text-[13px] font-medium uppercase tracking-wider flex items-center justify-between px-5 sm:px-6 shadow-xl cursor-pointer"
+          >
+            <span className="truncate mr-4">{product.name} · dès {product.priceFrom} €</span>
+            <span className="shrink-0">Personnaliser →</span>
+          </button>
+        </div>
       )}
 
-      {/* PROGRESSIVE DISCLOSURE CONFIGURATOR DRAWER */}
+      {/* CONFIGURATOR DRAWER */}
       <ProductConfiguratorDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
