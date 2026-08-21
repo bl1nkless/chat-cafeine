@@ -6,11 +6,17 @@ import { X, Check, Calendar, MessageSquare, ShieldCheck, MessageCircle } from "l
 import { siteConfig } from "@/content/site";
 import type { CatalogProduct } from "@/content/catalog";
 
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+  }
+}
+
 // A simple utility to track events, respecting the constraint to not send PII or message content.
-const trackAnalyticsEvent = (eventName: string, params: Record<string, any> = {}) => {
+const trackAnalyticsEvent = (eventName: string, params: Record<string, unknown> = {}) => {
   if (typeof window !== "undefined") {
-    if ((window as any).dataLayer) {
-      (window as any).dataLayer.push({ event: eventName, ...params });
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: eventName, ...params });
     } else {
       console.log(`[Analytics] Event: ${eventName}`, params);
     }
@@ -58,9 +64,9 @@ export function ProductConfiguratorDrawer({
   // Track Analytics when modal opens
   useEffect(() => {
     if (isOpen) {
-      trackAnalyticsEvent("product_configurator_open", { product_id: product.id });
+      trackAnalyticsEvent("product_configurator_open", { product_id: product.slug });
     }
-  }, [isOpen, product.id]);
+  }, [isOpen, product.slug]);
 
   // Handle Focus Trap, Escape Key, and Body Scroll
   useEffect(() => {
@@ -139,7 +145,7 @@ export function ProductConfiguratorDrawer({
 
   const handleWhatsAppClick = () => {
     trackAnalyticsEvent("whatsapp_order_click", { 
-      product_id: product.id, 
+      product_id: product.slug, 
       total_price: totalPrice 
     });
   };

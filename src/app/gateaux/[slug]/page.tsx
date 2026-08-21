@@ -4,8 +4,7 @@ import React, { useState, useMemo, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Clock, Users, Leaf, HeartHandshake } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { ArrowLeft } from "lucide-react";
 import { ProductConfiguratorDrawer } from "@/components/product/ProductConfiguratorDrawer";
 import { catalogProducts } from "@/content/catalog";
 
@@ -32,15 +31,6 @@ export default function ProductDetailPage() {
   const [requestedDate, setRequestedDate] = useState<string>("");
   const [customerNote, setCustomerNote] = useState<string>("");
 
-  const isConfigured = useMemo(() => {
-    const isPortionChanged = selectedPortion !== defaultPortion;
-    const isFruitChanged = selectedOptions["fruits"] && selectedOptions["fruits"] !== "none";
-    const isDecorChanged = selectedOptions["decoration"] && selectedOptions["decoration"] !== (product.optionGroups?.find(g => g.id === "decoration")?.options[0]?.id || "natural");
-    const isRemoved = removedIngredients.length > 0;
-    const isDateSet = requestedDate !== "";
-    const isNoteSet = customerNote !== "";
-    return isPortionChanged || isFruitChanged || isDecorChanged || isRemoved || isDateSet || isNoteSet;
-  }, [selectedPortion, defaultPortion, selectedOptions, removedIngredients, requestedDate, customerNote, product]);
 
   const handleOptionChange = (groupId: string, optionId: string) => {
     setSelectedOptions((prev) => ({ ...prev, [groupId]: optionId }));
