@@ -274,7 +274,7 @@ function page(req, res, url) {
   return html(res, 404, views.render('notfound', c, { url }));
 }
 
-const server = http.createServer(async (req, res) => {
+const handler = async (req, res) => {
   const url = new URL(req.url, 'http://' + (req.headers.host || 'localhost'));
   try {
     if (url.pathname.startsWith('/api/admin')) return store.ADMIN ? await apiAdmin(req, res, url) : json(res, 404, { error: 'Introuvable' });
@@ -293,12 +293,18 @@ const server = http.createServer(async (req, res) => {
     console.error(e);
     if (!res.headersSent) json(res, e.status || 500, { error: e.status ? e.message : 'Erreur serveur' });
   }
-});
+};
 
-server.listen(PORT, HOST, () => {
-  console.log(`\n  ☕ Chat Caféiné — http://localhost:${PORT}`);
-  if (!store.ADMIN) { console.log('  ✏️  Contenu : lib/defaults.js (admin désactivée)\n'); return; }
-  const a = auth.getAuth();
-  console.log(`  🔐 Admin        — http://localhost:${PORT}/admin`);
-  if (a.isDefault) console.log(`     Mot de passe par défaut : « ${auth.DEFAULT_PASSWORD} » (à changer dans l'admin)\n`);
-});
+const server = http.createServer(handler);
+
+if (require.main === module) {
+  server.listen(PORT, HOST, () => {
+    console.log(`\n  ☕ Chat Caféiné — http://localhost:${PORT}`);
+    if (!store.ADMIN) { console.log('  ✏️  Contenu : lib/defaults.js (admin désactivée)\n'); return; }
+    const a = auth.getAuth();
+    console.log(`  🔐 Admin        — http://localhost:${PORT}/admin`);
+    if (a.isDefault) console.log(`     Mot de passe par défaut : « ${auth.DEFAULT_PASSWORD} » (à changer dans l'admin)\n`);
+  });
+}
+
+module.exports = handler;
