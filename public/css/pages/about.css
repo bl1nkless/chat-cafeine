@@ -1,0 +1,23 @@
+/* À propos */
+.mascot { display: grid; grid-template-columns: 42% 1fr; align-items: center; gap: 14px; margin: 26px var(--pad) 0; padding: 20px 18px; border-radius: var(--radius); background: var(--bg-alt); }
+.mascot__text .t-body { margin-top: 10px; font-size: var(--fs-sm); }
+.split--place .note { display: inline-flex; }
+
+@media (min-width: 960px) {
+  .split--why { padding-right: var(--pad); align-items: center; }
+  .split--why .split__text { padding-right: 56u; }
+  .mascot { grid-template-columns: 300u 1fr; gap: 32u; margin: 0; padding: 36u 40u 36u 24u; border-radius: 28u; background: radial-gradient(90% 80% at 40% 55%, #efdcc6, var(--bg-alt) 70%); }
+  .mascot__text .t-body { margin-top: 14u; font-size: var(--fs-body); }
+}
+
+/* Valeurs : quatre colonnes de texte, avec les petits dessins de la maquette */
+.values { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+.values li { display: grid; align-content: start; gap: 4px; padding-top: 14px; border-top: 1px solid var(--line-strong); }
+.values__img { width: 48px; height: 48px; object-fit: contain; margin-bottom: 8px; }
+.values strong { font: 600 var(--fs-h3)/1.2 var(--f-display); color: var(--ink); }
+.values span { font-size: var(--fs-sm); color: var(--muted); line-height: 1.45; }
+@media (min-width: 960px) {
+  .values { grid-template-columns: repeat(4, 1fr); gap: 40u; }
+  .values li { padding-top: 22u; gap: 6u; }
+  .values__img { width: 64u; height: 64u; margin-bottom: 12u; }
+}

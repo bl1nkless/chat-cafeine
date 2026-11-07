@@ -1,0 +1,43 @@
+/* Gâteaux sur mesure */
+.panel__cat { position: absolute; right: 14px; top: -46px; width: 74px; pointer-events: none; }
+.sec--form { display: grid; gap: 36px; }
+
+.steps ol { position: relative; display: grid; gap: 18px; margin-top: 20px; }
+.steps ol::before { content: ''; position: absolute; left: 22px; top: 24px; bottom: 24px; width: 1px; background: var(--line); }
+.steps li { position: relative; display: grid; grid-template-columns: 44px 52px 1fr; align-items: center; gap: 12px; }
+.steps__n { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-alt); font: 600 17px var(--f-display); color: var(--ink); }
+.steps__icon { width: 52px; height: 52px; padding: 9px; border-radius: 50%; background: var(--surface); object-fit: contain; }
+.steps strong { display: block; font-weight: 600; color: var(--ink); }
+.steps li span:not(.steps__n) { display: block; font-size: var(--fs-sm); color: var(--muted); line-height: 1.35; margin-top: 2px; }
+
+.cakes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 12px; }
+.cake { position: relative; display: flex; flex-direction: column; overflow: hidden; aspect-ratio: 170 / 290; background: var(--bg-alt); border-radius: 999px 999px 18px 18px / 85px 85px 18px 18px; transition: transform .2s ease, box-shadow .2s ease; }
+.cake__hit { position: absolute; inset: 0; z-index: 3; }
+.cake__img { height: 58%; overflow: hidden; }
+.cake__img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .5s ease; }
+.cake:hover .cake__img img { transform: scale(1.05); }
+.cake__label { position: absolute; left: 0; right: 0; bottom: 0; top: 50%; display: grid; justify-items: center; align-content: start; padding: 20px 8px 0; text-align: center; background: var(--lab); color: var(--lab-text); border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
+.cake__label .t-h3 { color: inherit; }
+.cake__label i { display: block; width: 24px; height: 1.5px; margin: 8px 0; background: currentColor; }
+.cake__price { font-size: var(--fs-xs); font-weight: 500; }
+.cake small { display: block; font-size: var(--fs-xs); }
+.cake__cta { display: inline-grid; place-items: center; height: 34px; padding: 0 18px; margin-top: 10px; border-radius: 999px; background: var(--accent); color: #fff8ef; font-weight: 600; font-size: 13.5px; transition: background-color .2s; }
+.cake:hover .cake__cta { background: var(--accent-hover); }
+
+@media (min-width: 960px) {
+  .sec--form { grid-template-columns: 1.15fr 1fr; gap: 72u; align-items: start; }
+  .panel__cat { right: 24u; top: -84u; width: 120u; }
+  .steps { padding-top: 12u; }
+  .steps ol { gap: 28u; margin-top: 32u; }
+  .steps ol::before { left: 26u; top: 30u; bottom: 30u; }
+  .steps li { grid-template-columns: 52u 64u 1fr; gap: 20u; }
+  .steps__n { width: 52u; height: 52u; font-size: 20u; }
+  .steps__icon { width: 64u; height: 64u; padding: 12u; }
+
+  .cakes { grid-template-columns: repeat(3, 1fr); gap: 36u 40u; padding: 0 60u; }
+  .cake { aspect-ratio: auto; height: 520u; border-radius: 190u 190u 18u 18u; }
+  .cake__img { height: 340u; flex: none; }
+  .cake__label { top: auto; height: 220u; padding-top: 30u; border-radius: 50% 50% 0 0 / 34% 34% 0 0; }
+  .cake__label i { width: 34u; margin: 12u 0; }
+  .cake__cta { height: max(34px, 40u); padding: 0 24u; margin-top: 16u; font-size: var(--fs-sm); }
+}
