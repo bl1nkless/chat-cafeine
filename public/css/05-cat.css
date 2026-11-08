@@ -1,58 +1,127 @@
 /* =========================================================
-   Le chat grincheux — mascotte du site (ordinateur uniquement)
-   Il se promène sur les arches des produits, saute d'un bloc à l'autre,
-   boit son café, s'endort… et n'aime pas qu'on le dérange.
+   Le chat grincheux — mascotte articulée 60 FPS (ordinateur uniquement)
    ========================================================= */
 .gc { display: none; }
 
 @media (min-width: 960px) {
-  /* Calque en coordonnées de la page : le chat défile avec le contenu, sans calcul au scroll.
-     Sous l'en-tête collant (z 50) et sous le panier / menu (z 80). */
-  .gc { display: block; position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 40; pointer-events: none; }
-  .gc__cat { position: absolute; left: 0; top: 0; will-change: transform; }
-
-  /* Point d'ancrage = les pattes. Le corps pivote et se retourne autour de ce point. */
-  .gc__body { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; will-change: transform; }
-  .gc__img {
-    position: absolute; left: 0; bottom: -1px; max-width: none; transform: translateX(-50%);
-    display: none; pointer-events: auto; cursor: pointer; user-select: none; -webkit-user-drag: none;
-    filter: drop-shadow(0 2px 3px rgba(43, 20, 10, .18));
+  .gc {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 40;
+    pointer-events: none;
+    user-select: none;
   }
-  .gc__img.is-on { display: block; }
+
+  .gc__cat {
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+  }
+
+  .gc__canvas {
+    position: absolute;
+    left: -80px;
+    top: -120px;
+    width: 160px;
+    height: 136px;
+    display: block;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 5px rgba(43, 20, 10, .18));
+  }
+
+  .gc__hit {
+    position: absolute;
+    left: -44px;
+    top: -86px;
+    width: 88px;
+    height: 86px;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 50%;
+  }
 
   .gc__shadow {
-    position: absolute; left: -32px; top: -5px; width: 64px; height: 9px; border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(43, 20, 10, .26), rgba(43, 20, 10, 0));
-    transition: opacity .15s;
+    position: absolute;
+    left: -34px;
+    top: -5px;
+    width: 68px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(43, 20, 10, .25), rgba(43, 20, 10, 0));
+    transition: opacity .22s ease, transform .22s ease;
   }
-  .gc.is-air .gc__shadow { opacity: 0; }
+
+  .gc.is-air .gc__shadow {
+    opacity: .08;
+    transform: scale(.55);
+  }
 
   /* Bulle : ton sec, typographie des titres du site */
   .gc__bubble {
-    position: absolute; left: 0; bottom: 96px; transform: translate(-50%, 6px) scale(.92); transform-origin: 50% 100%;
-    padding: 7px 14px 8px; border-radius: 14px; background: var(--surface); color: var(--ink);
-    font: italic 600 15px/1.2 var(--f-display); letter-spacing: -.01em; white-space: nowrap;
+    position: absolute;
+    left: 0;
+    bottom: 98px;
+    transform: translate(-50%, 8px) scale(.9);
+    transform-origin: 50% 100%;
+    padding: 7px 14px 8px;
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--ink);
+    font: italic 600 15px/1.2 var(--f-display);
+    letter-spacing: -.01em;
+    white-space: nowrap;
     box-shadow: 0 0 0 1.5px var(--ink), 0 12px 26px -14px rgba(43, 20, 10, .55);
-    opacity: 0; transition: opacity .18s, transform .22s cubic-bezier(.34, 1.56, .64, 1);
+    opacity: 0;
+    transition: opacity .22s ease, transform .26s cubic-bezier(.34, 1.56, .64, 1);
   }
-  .gc__bubble::after {
-    content: ''; position: absolute; left: 50%; top: 100%; width: 10px; height: 10px; margin: -5px 0 0 -5px;
-    background: var(--surface); box-shadow: 1.5px 1.5px 0 var(--ink); transform: rotate(45deg);
-  }
-  .gc__bubble.is-on { opacity: 1; transform: translate(-50%, 0) scale(1); }
 
-  /* Petits signes : zZz quand il dort, colère quand on l'embête */
-  .gc__fx {
-    position: absolute; left: 0; bottom: 64px; pointer-events: none;
-    font: italic 700 16px/1 var(--f-display); color: var(--ink);
-    animation: gc-fx 1.7s ease-out forwards;
+  .gc__bubble::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    background: var(--surface);
+    box-shadow: 1.5px 1.5px 0 var(--ink);
+    transform: rotate(45deg);
   }
-  .gc__fx--angry { font: 700 18px/1 var(--f-sans); color: var(--closed); font-style: normal; }
+
+  .gc__bubble.is-on {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  /* Petits signes : zZz quand il dort, vapeur de café, colère quand on l'embête */
+  .gc__fx {
+    position: absolute;
+    left: 0;
+    bottom: 68px;
+    pointer-events: none;
+    font: italic 700 16px/1 var(--f-display);
+    color: var(--ink);
+    animation: gc-fx 1.8s cubic-bezier(.2, .8, .2, 1) forwards;
+  }
+
+  .gc__fx--angry {
+    font: 700 18px/1 var(--f-sans);
+    color: var(--closed);
+    font-style: normal;
+  }
+
   @keyframes gc-fx {
-    0% { opacity: 0; transform: translate(0, 6px) scale(.7); }
-    20% { opacity: 1; }
-    100% { opacity: 0; transform: translate(var(--dx, 10px), -36px) scale(1.05); }
+    0% { opacity: 0; transform: translate(0, 8px) scale(.65); }
+    22% { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--dx, 10px), -38px) scale(1.06); }
   }
 }
 
-@media (prefers-reduced-motion: reduce) { .gc { display: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .gc { display: none !important; }
+}
