@@ -2,7 +2,7 @@
    Base : remise à zéro, typographie, utilitaires
    ========================================================= */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--hdr-h) + 16px); }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--hdr-h) + 16px); overflow-y: scroll; scrollbar-gutter: stable; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
   font: 400 var(--fs-body)/1.5 var(--f-sans); letter-spacing: -.005em;
