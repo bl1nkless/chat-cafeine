@@ -286,12 +286,26 @@
   // ---------- Menu : la rubrique visible est marquée dans la barre ----------
   const catLinks = $$('[data-cats] a');
   if (catLinks.length && 'IntersectionObserver' in window) {
+    let lockUntil = 0;
     const mark = (id) => {
       catLinks.forEach((a) => a.classList.toggle('is-active', a.hash === '#' + id));
       const on = catLinks.find((a) => a.hash === '#' + id);
-      if (on) on.parentElement.scrollTo({ left: on.offsetLeft - 16, behavior: 'smooth' });
+      const wrap = on && on.parentElement;
+      if (on && wrap && wrap.scrollWidth > wrap.clientWidth + 2) {
+        const targetLeft = on.offsetLeft - (wrap.clientWidth - on.offsetWidth) / 2;
+        wrap.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+      }
     };
-    const io = new IntersectionObserver((ents) => ents.forEach((en) => { if (en.isIntersecting) mark(en.target.id); }), { rootMargin: '-35% 0px -60% 0px' });
+    catLinks.forEach((a) => a.addEventListener('click', () => {
+      const id = a.hash.slice(1);
+      if (!id) return;
+      lockUntil = performance.now() + 750;
+      mark(id);
+    }));
+    const io = new IntersectionObserver((ents) => {
+      if (performance.now() < lockUntil) return;
+      ents.forEach((en) => { if (en.isIntersecting) mark(en.target.id); });
+    }, { rootMargin: '-35% 0px -60% 0px' });
     $$('[data-cat-section]').forEach((sec) => io.observe(sec));
   }
 

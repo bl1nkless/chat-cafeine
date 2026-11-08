@@ -15,7 +15,7 @@
 .hdr.is-stuck { box-shadow: 0 1px 0 var(--line); }
 .hdr__in { display: flex; align-items: center; gap: 10px; height: var(--hdr-h); padding: 0 calc(var(--pad) - 6px) 0 var(--pad); }
 .hdr__logo { flex: none; display: flex; align-items: center; height: 100%; }
-.hdr__logo img { height: calc(var(--hdr-h) - 12px); width: auto; }
+.hdr__logo img { height: calc(var(--hdr-h) - 12px); width: auto; aspect-ratio: 207 / 123; }
 .hdr__nav { display: none; }
 .hdr__actions { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 
@@ -115,14 +115,16 @@ body.has-cart .ftr__copy { padding-bottom: 90px; }
    ========================================================= */
 @media (min-width: 960px) {
   .topbar__in { gap: 32u; }
-  .hdr__in { gap: 32u; padding: 0 var(--pad); }
+  .hdr__in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32u; padding: 0 var(--pad); }
+  .hdr__logo { justify-self: start; }
   .hdr__logo img { height: calc(var(--hdr-h) - 16u); }
-  .hdr__nav { display: flex; flex: 1; justify-content: center; gap: 36u; }
-  .hdr__nav a { position: relative; padding: 8u 0; font-size: max(13px, 15.5u); font-weight: 500; color: var(--muted); transition: color .2s; }
+  .hdr__nav { display: flex; justify-content: center; align-items: center; gap: 36u; }
+  .hdr__nav a { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; padding: 8u 0; font-size: max(13px, 15.5u); font-weight: 500; color: var(--muted); transition: color .2s; white-space: nowrap; }
+  .hdr__nav a::before { content: attr(data-text); font-weight: 600; height: 0; overflow: hidden; visibility: hidden; user-select: none; pointer-events: none; }
   .hdr__nav a:hover { color: var(--ink); }
   .hdr__nav a.is-active { color: var(--ink); font-weight: 600; }
   .hdr__nav a.is-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: var(--caramel-ink); }
-  .hdr__actions { margin-left: 0; }
+  .hdr__actions { justify-self: end; margin-left: 0; }
   .hdr__cta { height: var(--btn-h-sm); padding: 0 22u; min-width: 150u; font-variant-numeric: tabular-nums; }
 
   .ftr { margin-top: 110u; }
